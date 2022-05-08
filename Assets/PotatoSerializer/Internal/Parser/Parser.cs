@@ -33,7 +33,7 @@ namespace PotatoSerializer {
 
 		private JsonNode ParseObject(TokenStream stream) {
 			stream.Expect(TokenType.OpenBrace);
-			JsonNode obj = new JsonNode(JsonNode.Type.Object);
+			JsonNode obj = new JsonNode(JsonType.Object);
 			bool isFirst = true;
 			while (!stream.IsEndOfFile() && !stream.Peek(TokenType.CloseBrace)) {
 				if (isFirst) {
@@ -43,7 +43,7 @@ namespace PotatoSerializer {
 				}
 				string name = stream.Peek().Value.ToString();
 				stream.Expect(TokenType.String);
-				obj.AddValue(name, ParseValue(stream));
+				obj.Add(name, ParseValue(stream));
 			}
 			stream.Expect(TokenType.CloseBrace);
 			return obj;
@@ -51,7 +51,7 @@ namespace PotatoSerializer {
 
 		private JsonNode ParseArray(TokenStream stream) {
 			stream.Expect(TokenType.OpenSquare);
-			JsonNode array = new JsonNode(JsonNode.Type.Array);
+			JsonNode array = new JsonNode(JsonType.Array);
 			bool isFirst = true;
 			while (!stream.IsEndOfFile() && !stream.Peek(TokenType.CloseSquare)) {
 				if (isFirst) {
@@ -59,7 +59,7 @@ namespace PotatoSerializer {
 				} else {
 					stream.Expect(TokenType.Comma);
 				}
-				array.AddValue(ParseValue(stream));
+				array.Add(ParseValue(stream));
 			}
 			return array;
 		}
@@ -83,7 +83,7 @@ namespace PotatoSerializer {
 				return new JsonNode(peek.Value.ToString());
 			} else if (stream.Peek(TokenType.Null)) {
 				stream.Advance();
-				return new JsonNode(JsonNode.Type.Null);
+				return new JsonNode(JsonType.Null);
 			} else if (stream.Peek(TokenType.OpenBrace)) {
 				return ParseObject(stream);
 			} else if (stream.Peek(TokenType.OpenSquare)) {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace PotatoSerializer {
 
@@ -41,6 +42,47 @@ namespace PotatoSerializer {
 			throw new NotImplementedException();
 		}
 		public void Serialize(string name, ref IDictionary<ISerialProxy<string>, ISet<ISerialObject>> value) {
+			throw new NotImplementedException();
+		}
+
+		#endregion
+
+		#region Enum
+
+		public void Serialize<T>(string name, ref T value) where T : Enum {
+			throw new NotImplementedException();
+		}
+		public void Serialize<T>(string name, ref T[] value) where T : Enum {
+			throw new NotImplementedException();
+		}
+		public void Serialize<T>(string name, ref IList<T> value) where T : Enum {
+			throw new NotImplementedException();
+		}
+		public void Serialize<T>(string name, ref ISet<T> value) where T : Enum {
+			throw new NotImplementedException();
+		}
+		public void Serialize<T>(string name, ref IDictionary<string, T> value) where T : Enum {
+			throw new NotImplementedException();
+		}
+		public void Serialize<T>(string name, ref IDictionary<ISerialProxy<string>, T> value) where T : Enum {
+			throw new NotImplementedException();
+		}
+		public void Serialize<T>(string name, ref IDictionary<string, T[]> value) where T : Enum {
+			throw new NotImplementedException();
+		}
+		public void Serialize<T>(string name, ref IDictionary<ISerialProxy<string>, T[]> value) where T : Enum {
+			throw new NotImplementedException();
+		}
+		public void Serialize<T>(string name, ref IDictionary<string, IList<T>> value) where T : Enum {
+			throw new NotImplementedException();
+		}
+		public void Serialize<T>(string name, ref IDictionary<ISerialProxy<string>, IList<T>> value) where T : Enum {
+			throw new NotImplementedException();
+		}
+		public void Serialize<T>(string name, ref IDictionary<string, ISet<T>> value) where T : Enum {
+			throw new NotImplementedException();
+		}
+		public void Serialize<T>(string name, ref IDictionary<ISerialProxy<string>, ISet<T>> value) where T : Enum {
 			throw new NotImplementedException();
 		}
 
@@ -1025,6 +1067,252 @@ namespace PotatoSerializer {
 			throw new NotImplementedException();
 		}
 		public void Serialize(string name, ref IDictionary<ISerialProxy<string>, ISet<ISerialProxy<sbyte>>> value) {
+			throw new NotImplementedException();
+		}
+
+		#endregion
+
+		#region Vector2
+
+		public void Serialize(string name, ref Vector2 value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref Vector2[] value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IList<Vector2> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref ISet<Vector2> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<string, Vector2> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<ISerialProxy<string>, Vector2> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<string, Vector2[]> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<ISerialProxy<string>, Vector2[]> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<string, IList<Vector2>> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<ISerialProxy<string>, IList<Vector2>> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<string, ISet<Vector2>> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<ISerialProxy<string>, ISet<Vector2>> value) {
+			throw new NotImplementedException();
+		}
+
+		#endregion
+
+		#region Vector2Int
+
+		public void Serialize(string name, ref Vector2Int value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref Vector2Int[] value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IList<Vector2Int> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref ISet<Vector2Int> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<string, Vector2Int> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<ISerialProxy<string>, Vector2Int> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<string, Vector2Int[]> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<ISerialProxy<string>, Vector2Int[]> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<string, IList<Vector2Int>> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<ISerialProxy<string>, IList<Vector2Int>> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<string, ISet<Vector2Int>> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<ISerialProxy<string>, ISet<Vector2Int>> value) {
+			throw new NotImplementedException();
+		}
+
+		#endregion
+
+		#region Vector3
+
+		public void Serialize(string name, ref Vector3 value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref Vector3[] value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IList<Vector3> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref ISet<Vector3> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<string, Vector3> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<ISerialProxy<string>, Vector3> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<string, Vector3[]> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<ISerialProxy<string>, Vector3[]> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<string, IList<Vector3>> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<ISerialProxy<string>, IList<Vector3>> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<string, ISet<Vector3>> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<ISerialProxy<string>, ISet<Vector3>> value) {
+			throw new NotImplementedException();
+		}
+
+		#endregion
+
+		#region Vector3Int
+
+		public void Serialize(string name, ref Vector3Int value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref Vector3Int[] value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IList<Vector3Int> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref ISet<Vector3Int> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<string, Vector3Int> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<ISerialProxy<string>, Vector3Int> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<string, Vector3Int[]> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<ISerialProxy<string>, Vector3Int[]> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<string, IList<Vector3Int>> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<ISerialProxy<string>, IList<Vector3Int>> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<string, ISet<Vector3Int>> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<ISerialProxy<string>, ISet<Vector3Int>> value) {
+			throw new NotImplementedException();
+		}
+
+		#endregion
+
+		#region Quaternion
+
+		public void Serialize(string name, ref Quaternion value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref Quaternion[] value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IList<Quaternion> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref ISet<Quaternion> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<string, Quaternion> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<ISerialProxy<string>, Quaternion> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<string, Quaternion[]> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<ISerialProxy<string>, Quaternion[]> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<string, IList<Quaternion>> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<ISerialProxy<string>, IList<Quaternion>> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<string, ISet<Quaternion>> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<ISerialProxy<string>, ISet<Quaternion>> value) {
+			throw new NotImplementedException();
+		}
+
+		#endregion
+
+		#region Color
+
+		public void Serialize(string name, ref Color value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref Color[] value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IList<Color> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref ISet<Color> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<string, Color> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<ISerialProxy<string>, Color> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<string, Color[]> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<ISerialProxy<string>, Color[]> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<string, IList<Color>> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<ISerialProxy<string>, IList<Color>> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<string, ISet<Color>> value) {
+			throw new NotImplementedException();
+		}
+		public void Serialize(string name, ref IDictionary<ISerialProxy<string>, ISet<Color>> value) {
 			throw new NotImplementedException();
 		}
 
