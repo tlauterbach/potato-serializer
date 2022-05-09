@@ -11,6 +11,9 @@ namespace PotatoSerializer {
 
 		private sealed partial class SerialIO : ISerializer {
 
+			public bool IsWriting { get; private set; }
+			public bool IsReading { get; private set; }
+
 			private Lexer m_lexer;
 			private Parser m_parser;
 			private Stringifier m_stringifier;
@@ -30,7 +33,7 @@ namespace PotatoSerializer {
 				m_tabSize = tabSize;
 			}
 
-			public string WriteObject<T>(T obj) where T : ISerialObject, new() {
+			public string WriteObject<T>(T obj, bool pretty) where T : ISerialObject, new() {
 				IsWriting = true;
 				IsReading = false;
 				m_root = new JsonNode(JsonType.Object);
@@ -40,6 +43,9 @@ namespace PotatoSerializer {
 				obj.Serialize(this);
 
 				string result = m_stringifier.Stringify(m_root);
+				if (pretty) {
+					result = m_stringifier.Prettify(result);
+				}
 				IsWriting = false;
 				m_stack.Clear();
 				return result;
@@ -58,10 +64,6 @@ namespace PotatoSerializer {
 				m_stack.Clear();
 				return obj;
 			}
-
-			public bool IsWriting { get; private set; }
-			public bool IsReading { get; private set; }
-
 
 			private void DoSerialize<T>(string name, ref T value, JsonToValue<T> read, ValueToJson<T> write) {
 				if (IsReading) {

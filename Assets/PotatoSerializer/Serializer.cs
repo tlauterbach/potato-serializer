@@ -19,8 +19,8 @@ namespace PotatoSerializer {
 			
 		}
 		*/
-		public string WriteObject<T>(T value) where T : ISerialObject, new() {
-			return m_io.WriteObject(value);
+		public string WriteObject<T>(T value, bool pretty = false) where T : ISerialObject, new() {
+			return m_io.WriteObject(value, pretty);
 		}
 		/*
 		public string WriteArray<T>(T[] array) where T : ISerialObject, new() {

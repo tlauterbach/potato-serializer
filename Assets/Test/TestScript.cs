@@ -11,11 +11,9 @@ public class TestScript : MonoBehaviour {
 	private class TestObj : ISerialObject {
 
 		private class SubObj : ISerialObject {
-
 			private double m_double;
 			private string m_string;
 			private uint m_integer;
-
 			public void Serialize(ISerializer serializer) {
 				serializer.Serialize("objectDouble", ref m_double);
 				serializer.Serialize("objectString", ref m_string);
@@ -58,8 +56,8 @@ public class TestScript : MonoBehaviour {
 
 		Serializer serializer = new Serializer();
 		TestObj obj = serializer.ReadObject<TestObj>(m_jsonFile.text);
-		string result = serializer.WriteObject(obj);
-		obj = serializer.ReadObject<TestObj>(result);
+		string result = serializer.WriteObject(obj,true);
+		serializer.ReadObject<TestObj>(result);
 		Debug.Log(result);
 	}
 
