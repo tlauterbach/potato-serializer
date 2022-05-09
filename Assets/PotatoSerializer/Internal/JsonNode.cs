@@ -141,7 +141,7 @@ namespace PotatoSerializer {
 				if (m_object.ContainsKey(name)) {
 					throw new Exception(string.Format(
 						"Value with name `{0}' already " +
-						"exists in JsonNode", 
+						"exists in JsonNode",
 						name
 					));
 				}
@@ -243,6 +243,20 @@ namespace PotatoSerializer {
 				return m_numberValue > 0;
 			} else {
 				throw new InvalidCastException(this, typeof(bool));
+			}
+		}
+		public byte AsByte() {
+			if (IsType(JsonType.Number)) {
+				return Convert.ToByte(m_numberValue);
+			} else {
+				throw new InvalidCastException(this, typeof(byte));
+			}
+		}
+		public sbyte AsSByte() {
+			if (IsType(JsonType.Number)) {
+				return Convert.ToSByte(m_numberValue);
+			} else {
+				throw new InvalidCastException(this, typeof(sbyte));
 			}
 		}
 

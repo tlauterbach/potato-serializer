@@ -43,7 +43,6 @@ namespace PotatoSerializer {
 				IsWriting = false;
 				m_stack.Clear();
 				return result;
-
 			}
 			public T ReadObject<T>(string json) where T : ISerialObject, new() {
 				IsWriting = false;
@@ -58,7 +57,6 @@ namespace PotatoSerializer {
 				IsReading = false;
 				m_stack.Clear();
 				return obj;
-
 			}
 
 			public bool IsWriting { get; private set; }
@@ -137,6 +135,7 @@ namespace PotatoSerializer {
 				}
 			}
 
+			/*
 			private void DoSerializeDictionaryCollection<TVal, TCol>(string name, IDictionary<string, TCol> value, JsonToValue<TVal> read, ValueToJson<TVal> write) where TCol : ICollection<TVal>, new() {
 
 				if (IsReading) {
@@ -201,7 +200,12 @@ namespace PotatoSerializer {
 					}
 				}
 			}
-			private T JsonToSO<T>(JsonNode node) where T : ISerialObject, new() {
+			*/
+
+
+			#region Converters
+
+			private T JsonToSerialObject<T>(JsonNode node) where T : ISerialObject, new() {
 				if (node.IsNull()) {
 					return default;
 				} else {
@@ -212,7 +216,7 @@ namespace PotatoSerializer {
 					return obj;
 				}
 			}
-			private JsonNode SOToJson<T>(T value) where T : ISerialObject, new() {
+			private JsonNode SerialObjectToJson<T>(T value) where T : ISerialObject, new() {
 				if (value == null) {
 					return new JsonNode(JsonType.Null);
 				} else {
@@ -223,6 +227,35 @@ namespace PotatoSerializer {
 					return obj;
 				}
 			}
+			private static T JsonToEnum<T>(JsonNode node) where T : struct, Enum {
+				if (node.IsNull()) {
+					return default;
+				} else {
+					if (System.Enum.TryParse(node.AsString(), out T value)) {
+						return value;
+					} else {
+						throw new Exception(string.Format(
+							"Could not parse `{0}' as Enum type " +
+							"`{1}'", node.AsString(), typeof(T).Name
+						));
+					}
+				}
+			}
+			private static JsonNode EnumToJson<T>(T value) where T : struct, Enum {
+				return new JsonNode(value.ToString());
+			}
+
+			private static string JsonToString(JsonNode node) {
+				if (node.IsNull()) {
+					return default;
+				} else {
+					return node.AsString();
+				}
+			}
+			private static JsonNode StringToJson(string value) {
+				return new JsonNode(value);
+			}
+
 			private static double JsonToDouble(JsonNode node) {
 				if (node.IsNull()) {
 					return default;
@@ -233,6 +266,124 @@ namespace PotatoSerializer {
 			private static JsonNode DoubleToJson(double value) {
 				return new JsonNode(value);
 			}
+
+			private static float JsonToFloat(JsonNode node) {
+				if (node.IsNull()) {
+					return default;
+				} else {
+					return node.AsSingle();
+				}
+			}
+			private static JsonNode FloatToJson(float value) {
+				return new JsonNode(value);
+			}
+
+			private static bool JsonToBool(JsonNode node) {
+				if (node.IsNull()) {
+					return default;
+				} else {
+					return node.AsBool();
+				}
+			}
+			private static JsonNode BoolToJson(bool value) {
+				return new JsonNode(value);
+			}
+			private static int JsonToInt32(JsonNode node) {
+				if (node.IsNull()) {
+					return default;
+				} else {
+					return node.AsInt32();
+				}
+			}
+			private static JsonNode Int32ToJson(int value) {
+				return new JsonNode(value);
+			}
+			private static short JsonToInt16(JsonNode node) {
+				if (node.IsNull()) {
+					return default;
+				} else {
+					return node.AsInt16();
+				}
+			}
+			private static JsonNode Int16ToJson(short value) {
+				return new JsonNode(value);
+			}
+			private static long JsonToInt64(JsonNode node) {
+				if (node.IsNull()) {
+					return default;
+				} else {
+					return node.AsInt64();
+				}
+			}
+			private static JsonNode Int64ToJson(long value) {
+				return new JsonNode(value);
+			}
+
+			private static uint JsonToUInt32(JsonNode node) {
+				if (node.IsNull()) {
+					return default;
+				} else {
+					return node.AsUInt32();
+				}
+			}
+			private static JsonNode UInt32ToJson(uint value) {
+				return new JsonNode(value);
+			}
+			private static ushort JsonToUInt16(JsonNode node) {
+				if (node.IsNull()) {
+					return default;
+				} else {
+					return node.AsUInt16();
+				}
+			}
+			private static JsonNode UInt16ToJson(ushort value) {
+				return new JsonNode(value);
+			}
+			private static ulong JsonToUInt64(JsonNode node) {
+				if (node.IsNull()) {
+					return default;
+				} else {
+					return node.AsUInt64();
+				}
+			}
+			private static JsonNode UInt64ToJson(ulong value) {
+				return new JsonNode(value);
+			}
+			private static byte JsonToByte(JsonNode node) {
+				if (node.IsNull()) {
+					return default;
+				} else {
+					return node.AsByte();
+				}
+			}
+			private static JsonNode ByteToJson(byte value) {
+				return new JsonNode(value);
+			}
+			private static sbyte JsonToSByte(JsonNode node) {
+				if (node.IsNull()) {
+					return default;
+				} else {
+					return node.AsSByte();
+				}
+			}
+			private static JsonNode SByteToJson(sbyte value) {
+				return new JsonNode(value);
+			}
+			
+
+			private static TVal JsonToProxyString<TVal>(JsonNode node) where TVal : ISerialProxy<string>, new() {
+				if (node.IsNull()) {
+					return default;
+				} else {
+					TVal proxy = new TVal();
+					proxy.SetSerialProxy(node.AsString());
+					return proxy;
+				}
+			}
+			private static JsonNode ProxyStringToJson<TVal>(TVal value) where TVal : ISerialProxy<string>, new() {
+				return new JsonNode(value.GetSerialProxy());
+			}
+
 			private static TVal JsonToProxyDouble<TVal>(JsonNode node) where TVal : ISerialProxy<double>, new() {
 				if (node.IsNull()) {
 					return default;
@@ -246,28 +397,138 @@ namespace PotatoSerializer {
 				return new JsonNode(value.GetSerialProxy());
 			}
 
-			private static string JsonToString(JsonNode node) {
-				if (node.IsNull()) {
-					return default;
-				} else {
-					return node.AsString();
-				}
-			}
-			private static JsonNode StringToJson(string value) {
-				return new JsonNode(value);
-			}
-			private static TVal JsonToProxyString<TVal>(JsonNode node) where TVal : ISerialProxy<string>, new() {
+			private static TVal JsonToProxySingle<TVal>(JsonNode node) where TVal : ISerialProxy<float>, new() {
 				if (node.IsNull()) {
 					return default;
 				} else {
 					TVal proxy = new TVal();
-					proxy.SetSerialProxy(node.AsString());
+					proxy.SetSerialProxy(node.AsSingle());
 					return proxy;
 				}
 			}
-			private static JsonNode ProxyStringToJson<TVal>(TVal value) where TVal : ISerialProxy<string>, new() {
+			private static JsonNode ProxySingleToJson<TVal>(TVal value) where TVal : ISerialProxy<float>, new() {
 				return new JsonNode(value.GetSerialProxy());
 			}
+
+			private static TVal JsonToProxyBool<TVal>(JsonNode node) where TVal : ISerialProxy<bool>, new() {
+				if (node.IsNull()) {
+					return default;
+				} else {
+					TVal proxy = new TVal();
+					proxy.SetSerialProxy(node.AsBool());
+					return proxy;
+				}
+			}
+			private static JsonNode ProxyBoolToJson<TVal>(TVal value) where TVal : ISerialProxy<bool>, new() {
+				return new JsonNode(value.GetSerialProxy());
+			}
+
+			private static TVal JsonToProxyInt32<TVal>(JsonNode node) where TVal : ISerialProxy<int>, new() {
+				if (node.IsNull()) {
+					return default;
+				} else {
+					TVal proxy = new TVal();
+					proxy.SetSerialProxy(node.AsInt32());
+					return proxy;
+				}
+			}
+			private static JsonNode ProxyInt32ToJson<TVal>(TVal value) where TVal : ISerialProxy<int>, new() {
+				return new JsonNode(value.GetSerialProxy());
+			}
+
+			private static TVal JsonToProxyInt16<TVal>(JsonNode node) where TVal : ISerialProxy<short>, new() {
+				if (node.IsNull()) {
+					return default;
+				} else {
+					TVal proxy = new TVal();
+					proxy.SetSerialProxy(node.AsInt16());
+					return proxy;
+				}
+			}
+			private static JsonNode ProxyInt16ToJson<TVal>(TVal value) where TVal : ISerialProxy<short>, new() {
+				return new JsonNode(value.GetSerialProxy());
+			}
+
+			private static TVal JsonToProxyInt64<TVal>(JsonNode node) where TVal : ISerialProxy<long>, new() {
+				if (node.IsNull()) {
+					return default;
+				} else {
+					TVal proxy = new TVal();
+					proxy.SetSerialProxy(node.AsInt64());
+					return proxy;
+				}
+			}
+			private static JsonNode ProxyInt64ToJson<TVal>(TVal value) where TVal : ISerialProxy<long>, new() {
+				return new JsonNode(value.GetSerialProxy());
+			}
+
+			private static TVal JsonToProxyUInt32<TVal>(JsonNode node) where TVal : ISerialProxy<uint>, new() {
+				if (node.IsNull()) {
+					return default;
+				} else {
+					TVal proxy = new TVal();
+					proxy.SetSerialProxy(node.AsUInt32());
+					return proxy;
+				}
+			}
+			private static JsonNode ProxyUInt32ToJson<TVal>(TVal value) where TVal : ISerialProxy<uint>, new() {
+				return new JsonNode(value.GetSerialProxy());
+			}
+
+			private static TVal JsonToProxyUInt16<TVal>(JsonNode node) where TVal : ISerialProxy<ushort>, new() {
+				if (node.IsNull()) {
+					return default;
+				} else {
+					TVal proxy = new TVal();
+					proxy.SetSerialProxy(node.AsUInt16());
+					return proxy;
+				}
+			}
+			private static JsonNode ProxyUInt16ToJson<TVal>(TVal value) where TVal : ISerialProxy<ushort>, new() {
+				return new JsonNode(value.GetSerialProxy());
+			}
+
+			private static TVal JsonToProxyUInt64<TVal>(JsonNode node) where TVal : ISerialProxy<ulong>, new() {
+				if (node.IsNull()) {
+					return default;
+				} else {
+					TVal proxy = new TVal();
+					proxy.SetSerialProxy(node.AsUInt64());
+					return proxy;
+				}
+			}
+			private static JsonNode ProxyUInt64ToJson<TVal>(TVal value) where TVal : ISerialProxy<ulong>, new() {
+				return new JsonNode(value.GetSerialProxy());
+			}
+
+			private static TVal JsonToProxyByte<TVal>(JsonNode node) where TVal : ISerialProxy<byte>, new() {
+				if (node.IsNull()) {
+					return default;
+				} else {
+					TVal proxy = new TVal();
+					proxy.SetSerialProxy(node.AsByte());
+					return proxy;
+				}
+			}
+			private static JsonNode ProxyByteToJson<TVal>(TVal value) where TVal : ISerialProxy<byte>, new() {
+				return new JsonNode(value.GetSerialProxy());
+			}
+
+			private static TVal JsonToProxySByte<TVal>(JsonNode node) where TVal : ISerialProxy<sbyte>, new() {
+				if (node.IsNull()) {
+					return default;
+				} else {
+					TVal proxy = new TVal();
+					proxy.SetSerialProxy(node.AsSByte());
+					return proxy;
+				}
+			}
+			private static JsonNode ProxySByteToJson<TVal>(TVal value) where TVal : ISerialProxy<sbyte>, new() {
+				return new JsonNode(value.GetSerialProxy());
+			}
+
+			#endregion
+
 		}
 
 	}
