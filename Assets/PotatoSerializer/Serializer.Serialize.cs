@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace PotatoSerializer {
 	public sealed partial class Serializer {
-		private sealed partial class SerialIO : ISerializer {
+		private sealed partial class SerialIO : ISerializer { // Serializer.Serialize.cs
 
 			#region ISerialObject
 
@@ -251,6 +252,132 @@ namespace PotatoSerializer {
 			}
 			public void Enum<TKey, TVal>(string name, IDictionary<TKey, TVal> value) where TKey : ISerialProxy<string>, new() where TVal : struct, Enum {
 				DoSerializeDictionary(name, value, JsonToEnum<TVal>, EnumToJson);
+			}
+
+			#endregion
+
+			#region Vector2
+
+			public void Serialize(string name, ref Vector2 value) {
+				DoSerialize(name, ref value, JsonToVector2, Vector2ToJson);
+			}
+			public void Serialize(string name, ICollection<Vector2> value) {
+				DoSerializeCollection(name, value, JsonToVector2, Vector2ToJson);
+			}
+			public void Serialize(string name, IDictionary<string, Vector2> value) {
+				DoSerializeDictionary(name, value, JsonToVector2, Vector2ToJson);
+			}
+
+			public void Serialize<TKey>(string name, IDictionary<TKey, Vector2> value) where TKey : ISerialProxy<string>, new() {
+				DoSerializeDictionary(name, value, JsonToVector2, Vector2ToJson);
+			}
+
+			#endregion
+
+			#region Vector2Int
+
+			public void Serialize(string name, ref Vector2Int value) {
+				DoSerialize(name, ref value, JsonToVector2Int, Vector2IntToJson);
+			}
+			public void Serialize(string name, ICollection<Vector2Int> value) {
+				DoSerializeCollection(name, value, JsonToVector2Int, Vector2IntToJson);
+			}
+			public void Serialize(string name, IDictionary<string, Vector2Int> value) {
+				DoSerializeDictionary(name, value, JsonToVector2Int, Vector2IntToJson);
+			}
+
+			public void Serialize<TKey>(string name, IDictionary<TKey, Vector2Int> value) where TKey : ISerialProxy<string>, new() {
+				DoSerializeDictionary(name, value, JsonToVector2Int, Vector2IntToJson);
+			}
+
+			#endregion
+
+			#region Vector3
+
+			public void Serialize(string name, ref Vector3 value) {
+				DoSerialize(name, ref value, JsonToVector3, Vector3ToJson);
+			}
+			public void Serialize(string name, ICollection<Vector3> value) {
+				DoSerializeCollection(name, value, JsonToVector3, Vector3ToJson);
+			}
+			public void Serialize(string name, IDictionary<string, Vector3> value) {
+				DoSerializeDictionary(name, value, JsonToVector3, Vector3ToJson);
+			}
+
+			public void Serialize<TKey>(string name, IDictionary<TKey, Vector3> value) where TKey : ISerialProxy<string>, new() {
+				DoSerializeDictionary(name, value, JsonToVector3, Vector3ToJson);
+			}
+
+			#endregion
+
+			#region Vector3Int
+
+			public void Serialize(string name, ref Vector3Int value) {
+				DoSerialize(name, ref value, JsonToVector3Int, Vector3IntToJson);
+			}
+			public void Serialize(string name, ICollection<Vector3Int> value) {
+				DoSerializeCollection(name, value, JsonToVector3Int, Vector3IntToJson);
+			}
+			public void Serialize(string name, IDictionary<string, Vector3Int> value) {
+				DoSerializeDictionary(name, value, JsonToVector3Int, Vector3IntToJson);
+			}
+
+			public void Serialize<TKey>(string name, IDictionary<TKey, Vector3Int> value) where TKey : ISerialProxy<string>, new() {
+				DoSerializeDictionary(name, value, JsonToVector3Int, Vector3IntToJson);
+			}
+
+			#endregion
+
+			#region Color
+
+			public void Serialize(string name, ref Color value) {
+				DoSerialize(name, ref value, JsonToColor, ColorToJson);
+			}
+			public void Serialize(string name, ICollection<Color> value) {
+				DoSerializeCollection(name, value, JsonToColor, ColorToJson);
+			}
+			public void Serialize(string name, IDictionary<string, Color> value) {
+				DoSerializeDictionary(name, value, JsonToColor, ColorToJson);
+			}
+
+			public void Serialize<TKey>(string name, IDictionary<TKey, Color> value) where TKey : ISerialProxy<string>, new() {
+				DoSerializeDictionary(name, value, JsonToColor, ColorToJson);
+			}
+
+			#endregion
+
+			#region Rect
+
+			public void Serialize(string name, ref Rect value) {
+				DoSerialize(name, ref value, JsonToRect, RectToJson);
+			}
+			public void Serialize(string name, ICollection<Rect> value) {
+				DoSerializeCollection(name, value, JsonToRect, RectToJson);
+			}
+			public void Serialize(string name, IDictionary<string, Rect> value) {
+				DoSerializeDictionary(name, value, JsonToRect, RectToJson);
+			}
+
+			public void Serialize<TKey>(string name, IDictionary<TKey, Rect> value) where TKey : ISerialProxy<string>, new() {
+				DoSerializeDictionary(name, value, JsonToRect, RectToJson);
+			}
+
+			#endregion
+
+			#region RectInt
+
+			public void Serialize(string name, ref RectInt value) {
+				DoSerialize(name, ref value, JsonToRectInt, RectIntToJson);
+			}
+			public void Serialize(string name, ICollection<RectInt> value) {
+				DoSerializeCollection(name, value, JsonToRectInt, RectIntToJson);
+			}
+			public void Serialize(string name, IDictionary<string, RectInt> value) {
+				DoSerializeDictionary(name, value, JsonToRectInt, RectIntToJson);
+			}
+
+			public void Serialize<TKey>(string name, IDictionary<TKey, RectInt> value) where TKey : ISerialProxy<string>, new() {
+				DoSerializeDictionary(name, value, JsonToRectInt, RectIntToJson);
 			}
 
 			#endregion

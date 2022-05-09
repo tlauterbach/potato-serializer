@@ -14,10 +14,15 @@ public class TestScript : MonoBehaviour {
 			private double m_double;
 			private string m_string;
 			private uint m_integer;
+			private List<Vector3Int> m_array;
+			public SubObj() {
+				m_array = new List<Vector3Int>();
+			}
 			public void Serialize(ISerializer serializer) {
 				serializer.Serialize("objectDouble", ref m_double);
 				serializer.Serialize("objectString", ref m_string);
 				serializer.Serialize("objectInteger", ref m_integer);
+				serializer.Serialize("objectArray", m_array);
 			}
 		}
 

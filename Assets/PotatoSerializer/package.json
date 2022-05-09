@@ -1,0 +1,21 @@
+{
+  "name": "com.potatointeractive.serializer",
+  "version": "1.0.0",
+  "displayName": "PotatoSerializer",
+  "description": "A JSON Serializer/Deserializer for Unity/C#",
+  "unity": "2019.4",
+  "type": "utilities",
+  "dependencies": {
+  },
+  "keywords": [
+    "Unity", "utility", "util"
+  ],
+  "author": {
+    "name": "Terra Lauterbach",
+    "email": "potatointeractive@gmail.com",
+    "url": "https://rottentater.com/"
+  },
+  "publishConfig": {
+    "registry": "https://package.openupm.com"
+  }
+}

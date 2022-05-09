@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace PotatoSerializer {
 
@@ -9,7 +10,7 @@ namespace PotatoSerializer {
 		internal delegate TVal JsonToValue<TVal>(JsonNode node);
 		internal delegate JsonNode ValueToJson<TVal>(TVal value);
 
-		private sealed partial class SerialIO : ISerializer {
+		private sealed partial class SerialIO : ISerializer { // Serializer.SerialIO.cs
 
 			public bool IsWriting { get; private set; }
 			public bool IsReading { get; private set; }
@@ -50,6 +51,28 @@ namespace PotatoSerializer {
 				m_stack.Clear();
 				return result;
 			}
+			public string WriteArray<T>(T[] array, bool pretty) where T : ISerialObject, new() {
+				IsWriting = true;
+				IsReading = false;
+				m_root = new JsonNode(JsonType.Object);
+				m_stack.Clear();
+				m_stack.Push(m_root);
+
+				foreach (T item in array) {
+					JsonNode node = new JsonNode(JsonType.Object);
+					m_stack.Push(node);
+					item.Serialize(this);
+					m_root.Add(m_stack.Pop());
+				}
+
+				string result = m_stringifier.Stringify(m_root);
+				if (pretty) {
+					result = m_stringifier.Prettify(result);
+				}
+				IsWriting = false;
+				m_stack.Clear();
+				return result;
+			}
 			public T ReadObject<T>(string json) where T : ISerialObject, new() {
 				IsWriting = false;
 				IsReading = true;
@@ -63,6 +86,33 @@ namespace PotatoSerializer {
 				IsReading = false;
 				m_stack.Clear();
 				return obj;
+			}
+			public T[] ReadArray<T>(string json) where T : ISerialObject, new() {
+				IsWriting = false;
+				IsReading = true;
+				m_root = m_parser.Parse(m_lexer.Tokenize(json, m_tabSize));
+				m_stack.Clear();
+				m_stack.Push(m_root);
+
+				T[] array = new T[m_root.Count];
+				for (int ix = 0; ix < array.Length; ix++) {
+					m_stack.Push(m_root[ix]);
+					T obj = new T();
+					obj.Serialize(this);
+					m_stack.Pop();
+				}
+
+				IsReading = false;
+				m_stack.Clear();
+				return array;
+			}
+			public bool IsArray(string json) {
+				JsonNode node = m_parser.Parse(m_lexer.Tokenize(json, m_tabSize));
+				return node.IsType(JsonType.Array);
+			}
+			public bool IsObject(string json) {
+				JsonNode node = m_parser.Parse(m_lexer.Tokenize(json, m_tabSize));
+				return node.IsType(JsonType.Object);
 			}
 
 			private void DoSerialize<T>(string name, ref T value, JsonToValue<T> read, ValueToJson<T> write) {
@@ -371,7 +421,130 @@ namespace PotatoSerializer {
 			private static JsonNode SByteToJson(sbyte value) {
 				return new JsonNode(value);
 			}
-			
+
+			private static Vector2 JsonToVector2(JsonNode node) {
+				if (node.IsNull()) {
+					return default;
+				} else {
+					return new Vector2(node["x"].AsSingle(), node["y"].AsSingle());
+				}
+			}
+			private static JsonNode Vector2ToJson(Vector2 value) {
+				JsonNode node = new JsonNode(JsonType.Object);
+				node.Add("x", new JsonNode(value.x));
+				node.Add("y", new JsonNode(value.y));
+				return node;
+			}
+
+			private static Vector3 JsonToVector3(JsonNode node) {
+				if (node.IsNull()) {
+					return default;
+				} else {
+					return new Vector3(node["x"].AsSingle(), node["y"].AsSingle(), node["z"].AsSingle());
+				}
+			}
+			private static JsonNode Vector3ToJson(Vector3 value) {
+				JsonNode node = new JsonNode(JsonType.Object);
+				node.Add("x", new JsonNode(value.x));
+				node.Add("y", new JsonNode(value.y));
+				node.Add("z", new JsonNode(value.z));
+				return node;
+			}
+
+			private static Vector2Int JsonToVector2Int(JsonNode node) {
+				if (node.IsNull()) {
+					return default;
+				} else {
+					return new Vector2Int(node["x"].AsInt32(), node["y"].AsInt32());
+				}
+			}
+			private static JsonNode Vector2IntToJson(Vector2Int value) {
+				JsonNode node = new JsonNode(JsonType.Object);
+				node.Add("x", new JsonNode(value.x));
+				node.Add("y", new JsonNode(value.y));
+				return node;
+			}
+
+			private static Vector3Int JsonToVector3Int(JsonNode node) {
+				if (node.IsNull()) {
+					return default;
+				} else {
+					return new Vector3Int(node["x"].AsInt32(), node["y"].AsInt32(), node["z"].AsInt32());
+				}
+			}
+			private static JsonNode Vector3IntToJson(Vector3Int value) {
+				JsonNode node = new JsonNode(JsonType.Object);
+				node.Add("x", new JsonNode(value.x));
+				node.Add("y", new JsonNode(value.y));
+				node.Add("z", new JsonNode(value.z));
+				return node;
+			}
+
+			private static Quaternion JsonToQuaternion(JsonNode node) {
+				if (node.IsNull()) {
+					return default;
+				} else {
+					return new Quaternion(node["x"].AsSingle(), node["y"].AsSingle(), node["z"].AsSingle(), node["w"].AsSingle());
+				}
+			}
+			private static JsonNode QuaternionToJson(Quaternion value) {
+				JsonNode node = new JsonNode(JsonType.Object);
+				node.Add("x", new JsonNode(value.x));
+				node.Add("y", new JsonNode(value.y));
+				node.Add("z", new JsonNode(value.z));
+				node.Add("w", new JsonNode(value.w));
+				return node;
+			}
+
+			private static Color JsonToColor(JsonNode node) {
+				if (node.IsNull()) {
+					return default;
+				} else {
+					return new Color(node["r"].AsSingle(), node["g"].AsSingle(), node["b"].AsSingle(), node["a"].AsSingle());
+				}
+			}
+			private static JsonNode ColorToJson(Color value) {
+				JsonNode node = new JsonNode(JsonType.Object);
+				node.Add("r", new JsonNode(value.r));
+				node.Add("g", new JsonNode(value.g));
+				node.Add("b", new JsonNode(value.b));
+				node.Add("a", new JsonNode(value.a));
+				return node;
+			}
+
+			private static Rect JsonToRect(JsonNode node) {
+				if (node.IsNull()) {
+					return default;
+				} else {
+					return new Rect(node["x"].AsSingle(), node["y"].AsSingle(), node["width"].AsSingle(), node["height"].AsSingle());
+				}
+			}
+
+			private static JsonNode RectToJson(Rect value) {
+				JsonNode node = new JsonNode(JsonType.Object);
+				node.Add("x", new JsonNode(value.x));
+				node.Add("y", new JsonNode(value.y));
+				node.Add("width", new JsonNode(value.width));
+				node.Add("height", new JsonNode(value.height));
+				return node;
+			}
+			private static RectInt JsonToRectInt(JsonNode node) {
+				if (node.IsNull()) {
+					return default;
+				} else {
+					return new RectInt(node["x"].AsInt32(), node["y"].AsInt32(), node["width"].AsInt32(), node["height"].AsInt32());
+				}
+			}
+
+			private static JsonNode RectIntToJson(RectInt value) {
+				JsonNode node = new JsonNode(JsonType.Object);
+				node.Add("x", new JsonNode(value.x));
+				node.Add("y", new JsonNode(value.y));
+				node.Add("width", new JsonNode(value.width));
+				node.Add("height", new JsonNode(value.height));
+				return node;
+			}
+
 
 			private static TVal JsonToProxyString<TVal>(JsonNode node) where TVal : ISerialProxy<string>, new() {
 				if (node.IsNull()) {
