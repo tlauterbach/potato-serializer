@@ -41,8 +41,9 @@ namespace PotatoSerializer {
 				} else {
 					stream.Expect(TokenType.Comma);
 				}
-				string name = stream.Peek().Value.ToString();
+				string name = RemoveDoubleQuotes(stream.Peek());
 				stream.Expect(TokenType.String);
+				stream.Expect(TokenType.Colon);
 				obj.Add(name, ParseValue(stream));
 			}
 			stream.Expect(TokenType.CloseBrace);
@@ -61,6 +62,7 @@ namespace PotatoSerializer {
 				}
 				array.Add(ParseValue(stream));
 			}
+			stream.Expect(TokenType.CloseSquare);
 			return array;
 		}
 
@@ -73,14 +75,15 @@ namespace PotatoSerializer {
 				} else {
 					throw new ParseException(peek.Position, "Malformed number");
 				}
+			} else if (stream.Peek(TokenType.String)) {
+				stream.Advance();
+				return new JsonNode(RemoveDoubleQuotes(peek));
 			} else if (stream.Peek(TokenType.True)) {
 				stream.Advance();
 				return new JsonNode(true);
 			} else if (stream.Peek(TokenType.False)) {
 				stream.Advance();
 				return new JsonNode(false);
-			} else if (stream.Peek(TokenType.String)) {
-				return new JsonNode(peek.Value.ToString());
 			} else if (stream.Peek(TokenType.Null)) {
 				stream.Advance();
 				return new JsonNode(JsonType.Null);
@@ -94,6 +97,13 @@ namespace PotatoSerializer {
 				));
 			}
 		}
+
+		private string RemoveDoubleQuotes(Token token) {
+			string value = token.Value.ToString();
+			value = value.Substring(1, value.Length - 2);
+			return value;
+		}
+
 	}
 
 }

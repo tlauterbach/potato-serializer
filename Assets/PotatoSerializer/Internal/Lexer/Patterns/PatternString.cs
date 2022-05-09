@@ -16,6 +16,7 @@
 				char prev = stream.Peek(length - 1);
 				char current = stream.Peek(length);
 				if (current == CHAR_QUOTE && prev != CHAR_ESCAPE) {
+					length++;
 					return true;
 				}
 				length++;

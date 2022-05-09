@@ -1,4 +1,4 @@
-﻿namespace PotatoSerializer {
+﻿ namespace PotatoSerializer {
 
 	internal class PatternNumber : IPattern {
 
@@ -65,11 +65,11 @@
 					MoveNext(stream, ref current, ref length);
 				}
 			}
+			length -= 1;
 			return true; 
 		}
 		private void MoveNext(CharStream stream, ref char current, ref int length) {
-			length++;
-			current = stream.Peek(length);
+			current = stream.Peek(length++);
 		}
 
 		private bool IsValidStartChar(char c) {

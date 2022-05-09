@@ -1,0 +1,28 @@
+{
+	
+	"exponentA": 0.32984390e+12,
+	"exponentB" : 0.22E2,
+	"exponentC" : 23.039e-3,
+	"integer": 212934,
+	"double": 3290.32903,
+	"string": "This is a string of text",
+	"booleanA" : true,
+	"booleanB" : false,
+	"null" : null,
+	"obj" : { "a" : 0, "b": "a string" },
+	"object": {
+		"objectInteger": 39040,
+		"objectDouble" : 4902.39,
+		"objectString": "\tA string of text\n with \"escaped\" characters in it",
+		"objectArray" : [
+			{ "x": 0, "y": 0, "z" : 0},
+			{ "x": 2, "y": 4, "z" : 4},
+			{ "x": 1, "y": 3, "z" : 1},
+			{ "x": 3, "y": 2, "z" : 2},
+			{ "x": 4, "y": 1, "z" : 3}
+		]
+	},
+	"array": [ 1,2,3,4,5,6,7,8,9,0 ]
+
+
+}

@@ -33,16 +33,18 @@ namespace PotatoSerializer {
 		}
 		public void Tab() {
 			Position = Position.Tab(m_tabSize);
+			Advance();
 		}
 		public void Space() {
 			Position = Position.Space();
+			Advance();
 		}
 		public void LineFeed() {
 			Position = Position.LineFeed();
+			Advance();
 		}
 		public void Advance(int distance = 1) {
 			Index += distance;
-			Position = Position.Advance(distance);
 		}
 
 		public bool IsEndOfFile(int distance = 0) {

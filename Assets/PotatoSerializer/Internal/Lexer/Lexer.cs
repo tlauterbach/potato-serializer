@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
+using UnityEngine;
 
 namespace PotatoSerializer {
 
@@ -28,35 +30,47 @@ namespace PotatoSerializer {
 		}
 
 		public IEnumerable<Token> Tokenize(string input, int tabSize = 4) {
-			CharStream stream = new CharStream(input, tabSize);
+
+			string replaced = input.Replace("\r\n", "\n");
+
+			CharStream stream = new CharStream(replaced, tabSize);
 			m_tokens.Clear();
+
 			while (!stream.IsEndOfFile()) {
 				// ignore whitespace
-				if (TryIgnoreWhiteSpace(stream)) {
-					continue;
+				try {
+					if (TryIgnoreWhiteSpace(stream)) {
+						continue;
+					}
+					// handle keywords and symbols
+					if (TraverseDictionary(stream, m_keywords)) {
+						continue;
+					}
+					if (TraverseDictionary(stream, m_symbols)) {
+						continue;
+					}
+					// handle strings and numbers
+					if (TryAddToken(stream, TokenType.String, m_stringPattern)) {
+						continue;
+					}
+					if (TryAddToken(stream, TokenType.Number, m_numberPattern)) {
+						continue;
+					}
+				} catch (Exception e) {
+					throw new Exception(string.Format("at {0}: {1}", stream.Position, e.Message));
 				}
-				// handle keywords and symbols
-				if (TraverseDictionary(stream, m_keywords)) {
-					continue;
-				}
-				if (TraverseDictionary(stream, m_symbols)) {
-					continue;
-				}
-				// handle strings and numbers
-				if (TryAddToken(stream, TokenType.String, m_stringPattern)) {
-					continue;
-				}
-				if (TryAddToken(stream, TokenType.Number, m_numberPattern)) {
-					continue;
-				}
+				
 				throw new Exception(string.Format(
 					"Unrecognized character `{0}' at {1} in input string", 
 					stream.Peek(), stream.Position
 				));
 			}
+			//StringBuilder builder = new StringBuilder();
 			foreach (Token token in m_tokens) {
+				//builder.Append(token.Value).Append('\n');
 				yield return token;
 			}
+			//Debug.Log(builder.ToString());
 			m_tokens.Clear();
 		}
 

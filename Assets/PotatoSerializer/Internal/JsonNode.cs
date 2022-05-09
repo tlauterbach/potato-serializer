@@ -158,6 +158,14 @@ namespace PotatoSerializer {
 			}
 		}
 
+		public bool Contains(string name) {
+			if (IsType(JsonType.Object)) {
+				return m_object.ContainsKey(name);
+			} else {
+				throw new InvalidTypeException(nameof(Contains), JsonType.Object);
+			}
+		}
+
 		public bool IsType(JsonType type) {
 			return Type == type;
 		}

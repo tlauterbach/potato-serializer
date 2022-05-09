@@ -26,10 +26,11 @@ namespace PotatoSerializer {
 			}
 			if (Peek() != type) {
 				throw new System.Exception(string.Format(
-					"Unexpected token `{0}' in sequence. " +
-					"Expecting `{1}'.", Peek(), type
+					"Unexpected token `{0}' at {1} -- " +
+					"Expecting `{2}'.", Peek().Value, Peek().Position, type
 				));
 			}
+			Advance();
 		}
 		public bool Accept(TokenType type) {
 			if (Peek() == type) {

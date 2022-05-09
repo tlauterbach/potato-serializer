@@ -9,7 +9,7 @@
 		}
 		public bool Matches(CharStream stream, out int length) {
 			length = m_symbol.Length;
-			return !stream.IsEndOfFile(m_symbol.Length) &&
+			return !stream.IsEndOfFile(m_symbol.Length-1) &&
 				stream.SubString(m_symbol.Length) == m_symbol;
 		}
 
