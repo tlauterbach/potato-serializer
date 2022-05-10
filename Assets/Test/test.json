@@ -11,6 +11,8 @@
 	"null" : null,
 	"obj" : { "a" : 0, "b": "a string" },
 	"object": {
+		"stringProxy" : ["a","b","c","d","e","f"],
+		"shortProxy" : [56,493,983,398,-390,409,-4555],
 		"objectInteger": 39040,
 		"objectDouble" : 4902.39,
 		"objectString": "\tA string of text\n with \"escaped\" characters in it",

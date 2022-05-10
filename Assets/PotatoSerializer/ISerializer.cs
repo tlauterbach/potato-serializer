@@ -16,97 +16,73 @@ namespace PotatoSerializer {
 		void ProxyBool<TKey, TVal>(string name, IDictionary<TKey, TVal> value)
 			where TKey : ISerialProxy<string>, new()
 			where TVal : ISerialProxy<bool>, new();
-		void ProxyBool<TVal, TCol>(string name, TCol value)
-			where TVal : ISerialProxy<bool>, new()
-			where TCol : ICollection<TVal>;
+		void ProxyBool<TVal>(string name, ICollection<TVal> value) where TVal : ISerialProxy<bool>, new();
 		void ProxyBool<TVal>(string name, IDictionary<string, TVal> value) where TVal : ISerialProxy<bool>, new();
 		void ProxyBool<TVal>(string name, ref TVal value) where TVal : ISerialProxy<bool>, new();
 		void ProxyByte<TKey, TVal>(string name, IDictionary<TKey, TVal> value)
 			where TKey : ISerialProxy<string>, new()
 			where TVal : ISerialProxy<byte>, new();
-		void ProxyByte<TVal, TCol>(string name, TCol value)
-			where TVal : ISerialProxy<byte>, new()
-			where TCol : ICollection<TVal>;
+		void ProxyByte<TVal>(string name, ICollection<TVal> value) where TVal : ISerialProxy<byte>, new();
 		void ProxyByte<TVal>(string name, IDictionary<string, TVal> value) where TVal : ISerialProxy<byte>, new();
 		void ProxyByte<TVal>(string name, ref TVal value) where TVal : ISerialProxy<byte>, new();
 		void ProxyDouble<TKey, TVal>(string name, IDictionary<TKey, TVal> value)
 			where TKey : ISerialProxy<string>, new()
 			where TVal : ISerialProxy<double>, new();
-		void ProxyDouble<TVal, TCol>(string name, TCol value)
-			where TVal : ISerialProxy<double>, new()
-			where TCol : ICollection<TVal>;
+		void ProxyDouble<TVal>(string name, ICollection<TVal> value) where TVal : ISerialProxy<double>, new();
 		void ProxyDouble<TVal>(string name, IDictionary<string, TVal> value) where TVal : ISerialProxy<double>, new();
 		void ProxyDouble<TVal>(string name, ref TVal value) where TVal : ISerialProxy<double>, new();
 		void ProxyInt16<TKey, TVal>(string name, IDictionary<TKey, TVal> value)
 			where TKey : ISerialProxy<string>, new()
 			where TVal : ISerialProxy<short>, new();
-		void ProxyInt16<TVal, TCol>(string name, TCol value)
-			where TVal : ISerialProxy<short>, new()
-			where TCol : ICollection<TVal>;
+		void ProxyInt16<TVal>(string name, ICollection<TVal> value) where TVal : ISerialProxy<short>, new();
 		void ProxyInt16<TVal>(string name, IDictionary<string, TVal> value) where TVal : ISerialProxy<short>, new();
 		void ProxyInt16<TVal>(string name, ref TVal value) where TVal : ISerialProxy<short>, new();
 		void ProxyInt32<TKey, TVal>(string name, IDictionary<TKey, TVal> value)
 			where TKey : ISerialProxy<string>, new()
 			where TVal : ISerialProxy<int>, new();
-		void ProxyInt32<TVal, TCol>(string name, TCol value)
-			where TVal : ISerialProxy<int>, new()
-			where TCol : ICollection<TVal>;
+		void ProxyInt32<TVal>(string name, ICollection<TVal> value) where TVal : ISerialProxy<int>, new();
 		void ProxyInt32<TVal>(string name, IDictionary<string, TVal> value) where TVal : ISerialProxy<int>, new();
 		void ProxyInt32<TVal>(string name, ref TVal value) where TVal : ISerialProxy<int>, new();
 		void ProxyInt64<TKey, TVal>(string name, IDictionary<TKey, TVal> value)
 			where TKey : ISerialProxy<string>, new()
 			where TVal : ISerialProxy<long>, new();
-		void ProxyInt64<TVal, TCol>(string name, TCol value)
-			where TVal : ISerialProxy<long>, new()
-			where TCol : ICollection<TVal>;
+		void ProxyInt64<TVal>(string name, ICollection<TVal> value) where TVal : ISerialProxy<long>, new();
 		void ProxyInt64<TVal>(string name, IDictionary<string, TVal> value) where TVal : ISerialProxy<long>, new();
 		void ProxyInt64<TVal>(string name, ref TVal value) where TVal : ISerialProxy<long>, new();
 		void ProxySByte<TKey, TVal>(string name, IDictionary<TKey, TVal> value)
 			where TKey : ISerialProxy<string>, new()
 			where TVal : ISerialProxy<sbyte>, new();
-		void ProxySByte<TVal, TCol>(string name, TCol value)
-			where TVal : ISerialProxy<sbyte>, new()
-			where TCol : ICollection<TVal>;
+		void ProxySByte<TVal>(string name, ICollection<TVal> value) where TVal : ISerialProxy<sbyte>, new();
 		void ProxySByte<TVal>(string name, IDictionary<string, TVal> value) where TVal : ISerialProxy<sbyte>, new();
 		void ProxySByte<TVal>(string name, ref TVal value) where TVal : ISerialProxy<sbyte>, new();
 		void ProxySingle<TKey, TVal>(string name, IDictionary<TKey, TVal> value)
 			where TKey : ISerialProxy<string>, new()
 			where TVal : ISerialProxy<float>, new();
-		void ProxySingle<TVal, TCol>(string name, TCol value)
-			where TVal : ISerialProxy<float>, new()
-			where TCol : ICollection<TVal>;
+		void ProxySingle<TVal>(string name, ICollection<TVal> value) where TVal : ISerialProxy<float>, new();
 		void ProxySingle<TVal>(string name, IDictionary<string, TVal> value) where TVal : ISerialProxy<float>, new();
 		void ProxySingle<TVal>(string name, ref TVal value) where TVal : ISerialProxy<float>, new();
 		void ProxyString<TKey, TVal>(string name, IDictionary<TKey, TVal> value)
 			where TKey : ISerialProxy<string>, new()
 			where TVal : ISerialProxy<string>, new();
-		void ProxyString<TVal, TCol>(string name, TCol value)
-			where TVal : ISerialProxy<string>, new()
-			where TCol : ICollection<TVal>;
+		void ProxyString<TVal>(string name, ICollection<TVal> value) where TVal : ISerialProxy<string>, new();
 		void ProxyString<TVal>(string name, IDictionary<string, TVal> value) where TVal : ISerialProxy<string>, new();
 		void ProxyString<TVal>(string name, ref TVal value) where TVal : ISerialProxy<string>, new();
 		void ProxyUInt16<TKey, TVal>(string name, IDictionary<TKey, TVal> value)
 			where TKey : ISerialProxy<string>, new()
 			where TVal : ISerialProxy<ushort>, new();
-		void ProxyUInt16<TVal, TCol>(string name, TCol value)
-			where TVal : ISerialProxy<ushort>, new()
-			where TCol : ICollection<TVal>;
+		void ProxyUInt16<TVal>(string name, ICollection<TVal> value) where TVal : ISerialProxy<ushort>, new();
 		void ProxyUInt16<TVal>(string name, IDictionary<string, TVal> value) where TVal : ISerialProxy<ushort>, new();
 		void ProxyUInt16<TVal>(string name, ref TVal value) where TVal : ISerialProxy<ushort>, new();
 		void ProxyUInt32<TKey, TVal>(string name, IDictionary<TKey, TVal> value)
 			where TKey : ISerialProxy<string>, new()
 			where TVal : ISerialProxy<uint>, new();
-		void ProxyUInt32<TVal, TCol>(string name, TCol value)
-			where TVal : ISerialProxy<uint>, new()
-			where TCol : ICollection<TVal>;
+		void ProxyUInt32<TVal>(string name, ICollection<TVal> value) where TVal : ISerialProxy<uint>, new();
 		void ProxyUInt32<TVal>(string name, IDictionary<string, TVal> value) where TVal : ISerialProxy<uint>, new();
 		void ProxyUInt32<TVal>(string name, ref TVal value) where TVal : ISerialProxy<uint>, new();
 		void ProxyUInt64<TKey, TVal>(string name, IDictionary<TKey, TVal> value)
 			where TKey : ISerialProxy<string>, new()
 			where TVal : ISerialProxy<ulong>, new();
-		void ProxyUInt64<TVal, TCol>(string name, TCol value)
-			where TVal : ISerialProxy<ulong>, new()
-			where TCol : ICollection<TVal>;
+		void ProxyUInt64<TVal>(string name, ICollection<TVal> value) where TVal : ISerialProxy<ulong>, new();
 		void ProxyUInt64<TVal>(string name, IDictionary<string, TVal> value) where TVal : ISerialProxy<ulong>, new();
 		void ProxyUInt64<TVal>(string name, ref TVal value) where TVal : ISerialProxy<ulong>, new();
 		void Serialize(string name, ICollection<bool> value);

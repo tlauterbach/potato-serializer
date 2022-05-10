@@ -10,19 +10,47 @@ public class TestScript : MonoBehaviour {
 
 	private class TestObj : ISerialObject {
 
+		private struct StringProxy : ISerialProxy<string> {
+			private string m_value;
+			public StringProxy(string value) {
+				m_value = value;
+			}
+			public string GetSerialProxy() {
+				return m_value;
+			}
+			public void SetSerialProxy(string value) {
+				m_value = value;
+			}
+		}
+		private struct Int16Proxy : ISerialProxy<short> {
+			private short m_value;
+			public short GetSerialProxy() {
+				return m_value;
+			}
+			public void SetSerialProxy(short value) {
+				m_value = value;
+			}
+		}
+
 		private class SubObj : ISerialObject {
 			private double m_double;
 			private string m_string;
 			private uint m_integer;
 			private List<Vector3Int> m_array;
+			private List<StringProxy> m_stringProxy;
+			private HashSet<Int16Proxy> m_shortProxy;
 			public SubObj() {
 				m_array = new List<Vector3Int>();
+				m_stringProxy = new List<StringProxy>();
+				m_shortProxy = new HashSet<Int16Proxy>();
 			}
 			public void Serialize(ISerializer serializer) {
 				serializer.Serialize("objectDouble", ref m_double);
 				serializer.Serialize("objectString", ref m_string);
 				serializer.Serialize("objectInteger", ref m_integer);
 				serializer.Serialize("objectArray", m_array);
+				serializer.ProxyString("stringProxy", m_stringProxy);
+				serializer.ProxyInt16("shortProxy", m_shortProxy);
 			}
 		}
 

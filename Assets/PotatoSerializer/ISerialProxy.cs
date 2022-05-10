@@ -1,9 +1,6 @@
 ﻿namespace PotatoSerializer {
 
-	public interface ISerialProxy {
-	}
-
-	public interface ISerialProxy<T> : ISerialProxy {
+	public interface ISerialProxy<T> {
 		T GetSerialProxy();
 		void SetSerialProxy(T value);
 	}

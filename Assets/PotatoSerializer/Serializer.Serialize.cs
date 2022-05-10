@@ -387,8 +387,7 @@ namespace PotatoSerializer {
 			public void ProxyString<TVal>(string name, ref TVal value) where TVal : ISerialProxy<string>, new() {
 				DoSerialize(name, ref value, JsonToProxyString<TVal>, ProxyStringToJson);
 			}
-
-			public void ProxyString<TVal, TCol>(string name, TCol value) where TVal : ISerialProxy<string>, new() where TCol : ICollection<TVal> {
+			public void ProxyString<TVal>(string name, ICollection<TVal> value) where TVal : ISerialProxy<string>, new() {
 				DoSerializeCollection(name, value, JsonToProxyString<TVal>, ProxyStringToJson);
 			}
 			public void ProxyString<TVal>(string name, IDictionary<string, TVal> value) where TVal : ISerialProxy<string>, new() {
@@ -407,7 +406,7 @@ namespace PotatoSerializer {
 				DoSerialize(name, ref value, JsonToProxyDouble<TVal>, ProxyDoubleToJson);
 			}
 
-			public void ProxyDouble<TVal, TCol>(string name, TCol value) where TVal : ISerialProxy<double>, new() where TCol : ICollection<TVal> {
+			public void ProxyDouble<TVal>(string name, ICollection<TVal> value) where TVal : ISerialProxy<double>, new() {
 				DoSerializeCollection(name, value, JsonToProxyDouble<TVal>, ProxyDoubleToJson);
 			}
 			public void ProxyDouble<TVal>(string name, IDictionary<string, TVal> value) where TVal : ISerialProxy<double>, new() {
@@ -426,7 +425,7 @@ namespace PotatoSerializer {
 				DoSerialize(name, ref value, JsonToProxySingle<TVal>, ProxySingleToJson);
 			}
 
-			public void ProxySingle<TVal, TCol>(string name, TCol value) where TVal : ISerialProxy<float>, new() where TCol : ICollection<TVal> {
+			public void ProxySingle<TVal>(string name, ICollection<TVal> value) where TVal : ISerialProxy<float>, new() {
 				DoSerializeCollection(name, value, JsonToProxySingle<TVal>, ProxySingleToJson);
 			}
 			public void ProxySingle<TVal>(string name, IDictionary<string, TVal> value) where TVal : ISerialProxy<float>, new() {
@@ -445,7 +444,7 @@ namespace PotatoSerializer {
 				DoSerialize(name, ref value, JsonToProxyBool<TVal>, ProxyBoolToJson);
 			}
 
-			public void ProxyBool<TVal, TCol>(string name, TCol value) where TVal : ISerialProxy<bool>, new() where TCol : ICollection<TVal> {
+			public void ProxyBool<TVal>(string name, ICollection<TVal> value) where TVal : ISerialProxy<bool>, new() {
 				DoSerializeCollection(name, value, JsonToProxyBool<TVal>, ProxyBoolToJson);
 			}
 			public void ProxyBool<TVal>(string name, IDictionary<string, TVal> value) where TVal : ISerialProxy<bool>, new() {
@@ -464,7 +463,7 @@ namespace PotatoSerializer {
 				DoSerialize(name, ref value, JsonToProxyInt32<TVal>, ProxyInt32ToJson);
 			}
 
-			public void ProxyInt32<TVal, TCol>(string name, TCol value) where TVal : ISerialProxy<int>, new() where TCol : ICollection<TVal> {
+			public void ProxyInt32<TVal>(string name, ICollection<TVal> value) where TVal : ISerialProxy<int>, new() {
 				DoSerializeCollection(name, value, JsonToProxyInt32<TVal>, ProxyInt32ToJson);
 			}
 			public void ProxyInt32<TVal>(string name, IDictionary<string, TVal> value) where TVal : ISerialProxy<int>, new() {
@@ -483,7 +482,7 @@ namespace PotatoSerializer {
 				DoSerialize(name, ref value, JsonToProxyInt16<TVal>, ProxyInt16ToJson);
 			}
 
-			public void ProxyInt16<TVal, TCol>(string name, TCol value) where TVal : ISerialProxy<short>, new() where TCol : ICollection<TVal> {
+			public void ProxyInt16<TVal>(string name, ICollection<TVal> value) where TVal : ISerialProxy<short>, new() {
 				DoSerializeCollection(name, value, JsonToProxyInt16<TVal>, ProxyInt16ToJson);
 			}
 			public void ProxyInt16<TVal>(string name, IDictionary<string, TVal> value) where TVal : ISerialProxy<short>, new() {
@@ -502,7 +501,7 @@ namespace PotatoSerializer {
 				DoSerialize(name, ref value, JsonToProxyInt64<TVal>, ProxyInt64ToJson);
 			}
 
-			public void ProxyInt64<TVal, TCol>(string name, TCol value) where TVal : ISerialProxy<long>, new() where TCol : ICollection<TVal> {
+			public void ProxyInt64<TVal>(string name, ICollection<TVal> value) where TVal : ISerialProxy<long>, new() {
 				DoSerializeCollection(name, value, JsonToProxyInt64<TVal>, ProxyInt64ToJson);
 			}
 			public void ProxyInt64<TVal>(string name, IDictionary<string, TVal> value) where TVal : ISerialProxy<long>, new() {
@@ -521,7 +520,7 @@ namespace PotatoSerializer {
 				DoSerialize(name, ref value, JsonToProxyUInt32<TVal>, ProxyUInt32ToJson);
 			}
 
-			public void ProxyUInt32<TVal, TCol>(string name, TCol value) where TVal : ISerialProxy<uint>, new() where TCol : ICollection<TVal> {
+			public void ProxyUInt32<TVal>(string name, ICollection<TVal> value) where TVal : ISerialProxy<uint>, new () {
 				DoSerializeCollection(name, value, JsonToProxyUInt32<TVal>, ProxyUInt32ToJson);
 			}
 			public void ProxyUInt32<TVal>(string name, IDictionary<string, TVal> value) where TVal : ISerialProxy<uint>, new() {
@@ -540,7 +539,7 @@ namespace PotatoSerializer {
 				DoSerialize(name, ref value, JsonToProxyUInt16<TVal>, ProxyUInt16ToJson);
 			}
 
-			public void ProxyUInt16<TVal, TCol>(string name, TCol value) where TVal : ISerialProxy<ushort>, new() where TCol : ICollection<TVal> {
+			public void ProxyUInt16<TVal>(string name, ICollection<TVal> value) where TVal : ISerialProxy<ushort>, new() {
 				DoSerializeCollection(name, value, JsonToProxyUInt16<TVal>, ProxyUInt16ToJson);
 			}
 			public void ProxyUInt16<TVal>(string name, IDictionary<string, TVal> value) where TVal : ISerialProxy<ushort>, new() {
@@ -559,7 +558,7 @@ namespace PotatoSerializer {
 				DoSerialize(name, ref value, JsonToProxyUInt64<TVal>, ProxyUInt64ToJson);
 			}
 
-			public void ProxyUInt64<TVal, TCol>(string name, TCol value) where TVal : ISerialProxy<ulong>, new() where TCol : ICollection<TVal> {
+			public void ProxyUInt64<TVal>(string name, ICollection<TVal> value) where TVal : ISerialProxy<ulong>, new() {
 				DoSerializeCollection(name, value, JsonToProxyUInt64<TVal>, ProxyUInt64ToJson);
 			}
 			public void ProxyUInt64<TVal>(string name, IDictionary<string, TVal> value) where TVal : ISerialProxy<ulong>, new() {
@@ -578,7 +577,7 @@ namespace PotatoSerializer {
 				DoSerialize(name, ref value, JsonToProxyByte<TVal>, ProxyByteToJson);
 			}
 
-			public void ProxyByte<TVal, TCol>(string name, TCol value) where TVal : ISerialProxy<byte>, new() where TCol : ICollection<TVal> {
+			public void ProxyByte<TVal>(string name, ICollection<TVal> value) where TVal : ISerialProxy<byte>, new() {
 				DoSerializeCollection(name, value, JsonToProxyByte<TVal>, ProxyByteToJson);
 			}
 			public void ProxyByte<TVal>(string name, IDictionary<string, TVal> value) where TVal : ISerialProxy<byte>, new() {
@@ -597,7 +596,7 @@ namespace PotatoSerializer {
 				DoSerialize(name, ref value, JsonToProxySByte<TVal>, ProxySByteToJson);
 			}
 
-			public void ProxySByte<TVal, TCol>(string name, TCol value) where TVal : ISerialProxy<sbyte>, new() where TCol : ICollection<TVal> {
+			public void ProxySByte<TVal>(string name, ICollection<TVal> value) where TVal : ISerialProxy<sbyte>, new() {
 				DoSerializeCollection(name, value, JsonToProxySByte<TVal>, ProxySByteToJson);
 			}
 			public void ProxySByte<TVal>(string name, IDictionary<string, TVal> value) where TVal : ISerialProxy<sbyte>, new() {
