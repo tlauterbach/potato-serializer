@@ -92,6 +92,7 @@ namespace PotatoSerializer {
 		void Serialize(string name, ICollection<float> value);
 		void Serialize(string name, ICollection<int> value);
 		void Serialize(string name, ICollection<long> value);
+		void Serialize(string name, ICollection<Quaternion> value);
 		void Serialize(string name, ICollection<Rect> value);
 		void Serialize(string name, ICollection<RectInt> value);
 		void Serialize(string name, ICollection<sbyte> value);
@@ -111,6 +112,7 @@ namespace PotatoSerializer {
 		void Serialize(string name, IDictionary<string, float> value);
 		void Serialize(string name, IDictionary<string, int> value);
 		void Serialize(string name, IDictionary<string, long> value);
+		void Serialize(string name, IDictionary<string, Quaternion> value);
 		void Serialize(string name, IDictionary<string, Rect> value);
 		void Serialize(string name, IDictionary<string, RectInt> value);
 		void Serialize(string name, IDictionary<string, sbyte> value);
@@ -130,6 +132,7 @@ namespace PotatoSerializer {
 		void Serialize(string name, ref float value);
 		void Serialize(string name, ref int value);
 		void Serialize(string name, ref long value);
+		void Serialize(string name, ref Quaternion value);
 		void Serialize(string name, ref Rect value);
 		void Serialize(string name, ref RectInt value);
 		void Serialize(string name, ref sbyte value);
@@ -152,6 +155,7 @@ namespace PotatoSerializer {
 		void Serialize<TKey>(string name, IDictionary<TKey, float> value) where TKey : ISerialProxy<string>, new();
 		void Serialize<TKey>(string name, IDictionary<TKey, int> value) where TKey : ISerialProxy<string>, new();
 		void Serialize<TKey>(string name, IDictionary<TKey, long> value) where TKey : ISerialProxy<string>, new();
+		void Serialize<TKey>(string name, IDictionary<TKey, Quaternion> value) where TKey : ISerialProxy<string>, new();
 		void Serialize<TKey>(string name, IDictionary<TKey, Rect> value) where TKey : ISerialProxy<string>, new();
 		void Serialize<TKey>(string name, IDictionary<TKey, RectInt> value) where TKey : ISerialProxy<string>, new();
 		void Serialize<TKey>(string name, IDictionary<TKey, sbyte> value) where TKey : ISerialProxy<string>, new();

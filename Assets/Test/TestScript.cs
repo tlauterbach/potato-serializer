@@ -65,9 +65,11 @@ public class TestScript : MonoBehaviour {
 		private SubObj m_null;
 		private SubObj m_subObj;
 		private List<int> m_array;
+		private List<ulong> m_nullArray;
 
 		public TestObj() {
 			m_array = new List<int>();
+			m_nullArray = new List<ulong>();
 		}
 
 		public void Serialize(ISerializer serializer) {
@@ -82,6 +84,7 @@ public class TestScript : MonoBehaviour {
 			serializer.Serialize("null", ref m_null);
 			serializer.Serialize("object", ref m_subObj);
 			serializer.Serialize("array", m_array);
+			serializer.Serialize("nullArray", m_nullArray);
 		}
 	}
 

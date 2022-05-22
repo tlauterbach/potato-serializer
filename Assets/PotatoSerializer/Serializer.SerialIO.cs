@@ -126,6 +126,13 @@ namespace PotatoSerializer {
 				if (IsReading) {
 					if (Current.Contains(name)) {
 						if (Current[name].IsType(JsonType.Array)) {
+							if (value == null) {
+								throw new NullReferenceException(string.Format(
+									"ICollection `{0}' must be set to an " +
+									"instance of an object to be Read " +
+									"during deserializtion", name
+								));
+							}
 							value.Clear();
 							foreach (JsonNode item in Current[name].Children) {
 								value.Add(read(item));
@@ -150,11 +157,22 @@ namespace PotatoSerializer {
 					if (Current.Contains(name)) {
 						JsonNode node = Current[name];
 						if (node.IsType(JsonType.Object)) {
+							if (value == null) {
+								throw new NullReferenceException(string.Format(
+									"IDictionary `{0}' must be set to an " +
+									"instance of an object to be Read " +
+									"during deserializtion", name
+								));
+							}
 							value.Clear();
 							foreach (string child in node.Names) {
 								value.Add(child, read(node[child]));
 							}
+						} else {
+							throw new Exception(string.Format("Value `{0}' is not an object", name));
 						}
+					} else {
+						throw new KeyNotFoundException(string.Format("No value named `{0}' exists to read", name));
 					}
 				} else {
 					JsonNode obj = new JsonNode(JsonType.Object);
@@ -170,13 +188,24 @@ namespace PotatoSerializer {
 					if (Current.Contains(name)) {
 						JsonNode node = Current[name];
 						if (node.IsType(JsonType.Object)) {
+							if (value == null) {
+								throw new NullReferenceException(string.Format(
+									"IDictionary `{0}' must be set to an " +
+									"instance of an object to be Read " +
+									"during deserializtion", name
+								));
+							}
 							value.Clear();
 							foreach (string child in node.Names) {
 								TKey key = new TKey();
 								key.SetSerialProxy(child);
 								value.Add(key, read(node[child]));
 							}
+						} else {
+							throw new Exception(string.Format("Value `{0}' is not an object", name));
 						}
+					} else {
+						throw new KeyNotFoundException(string.Format("No value named `{0}' exists to read", name));
 					}
 				} else {
 					JsonNode obj = new JsonNode(JsonType.Object);
@@ -186,74 +215,6 @@ namespace PotatoSerializer {
 					Current.Add(name, obj);
 				}
 			}
-
-			/*
-			private void DoSerializeDictionaryCollection<TVal, TCol>(string name, IDictionary<string, TCol> value, JsonToValue<TVal> read, ValueToJson<TVal> write) where TCol : ICollection<TVal>, new() {
-
-				if (IsReading) {
-					if (Current.Contains(name)) {
-						JsonNode node = Current[name];
-						if (node.IsType(JsonType.Object)) {
-							value.Clear();
-							foreach (string child in node.Names) {
-								if (node[child].IsNull()) {
-									value.Add(child, default);
-								} else {
-									TCol collection = new TCol();
-									foreach (JsonNode item in node[child].Children) {
-										collection.Add(read(item));
-									}
-									value.Add(child, collection);
-								}
-							}
-						}
-					}
-				} else {
-					JsonNode obj = new JsonNode(JsonType.Object);
-					foreach (var kvp in value) {
-						JsonNode node = new JsonNode(JsonType.Array);
-						foreach (TVal item in kvp.Value) {
-							node.Add(write(item));
-						}
-						obj.Add(kvp.Key, node);
-					}
-				}
-			}
-			private void DoSerializeDictionaryCollection<TKey, TVal, TCol>(string name, IDictionary<TKey, TCol> value, JsonToValue<TVal> read, ValueToJson<TVal> write) where TKey : ISerialProxy<string>, new() where TCol : ICollection<TVal>, new() {
-
-				if (IsReading) {
-					if (Current.Contains(name)) {
-						JsonNode node = Current[name];
-						if (node.IsType(JsonType.Object)) {
-							value.Clear();
-							foreach (string child in node.Names) {
-								TKey key = new TKey();
-								key.SetSerialProxy(child);
-								if (node[child].IsNull()) {
-									value.Add(key, default);
-								} else {
-									TCol collection = new TCol();
-									foreach (JsonNode item in node[child].Children) {
-										collection.Add(read(item));
-									}
-									value.Add(key, collection);
-								}
-							}
-						}
-					}
-				} else {
-					JsonNode obj = new JsonNode(JsonType.Object);
-					foreach (var kvp in value) {
-						JsonNode node = new JsonNode(JsonType.Array);
-						foreach (TVal item in kvp.Value) {
-							node.Add(write(item));
-						}
-						obj.Add(kvp.Key.GetSerialProxy(), node);
-					}
-				}
-			}
-			*/
-
 
 			#region Converters
 

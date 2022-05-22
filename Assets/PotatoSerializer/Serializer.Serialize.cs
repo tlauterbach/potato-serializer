@@ -382,6 +382,25 @@ namespace PotatoSerializer {
 
 			#endregion
 
+			#region Quaternion
+
+			public void Serialize(string name, ref Quaternion value) {
+				DoSerialize(name, ref value, JsonToQuaternion, QuaternionToJson);
+			}
+			public void Serialize(string name, ICollection<Quaternion> value) {
+				DoSerializeCollection(name, value, JsonToQuaternion, QuaternionToJson);
+			}
+			public void Serialize(string name, IDictionary<string, Quaternion> value) {
+				DoSerializeDictionary(name, value, JsonToQuaternion, QuaternionToJson);
+			}
+
+			public void Serialize<TKey>(string name, IDictionary<TKey, Quaternion> value) where TKey : ISerialProxy<string>, new() {
+				DoSerializeDictionary(name, value, JsonToQuaternion, QuaternionToJson);
+			}
+
+			#endregion
+
+
 			#region ISerialProxy<string>
 
 			public void ProxyString<TVal>(string name, ref TVal value) where TVal : ISerialProxy<string>, new() {
@@ -520,7 +539,7 @@ namespace PotatoSerializer {
 				DoSerialize(name, ref value, JsonToProxyUInt32<TVal>, ProxyUInt32ToJson);
 			}
 
-			public void ProxyUInt32<TVal>(string name, ICollection<TVal> value) where TVal : ISerialProxy<uint>, new () {
+			public void ProxyUInt32<TVal>(string name, ICollection<TVal> value) where TVal : ISerialProxy<uint>, new() {
 				DoSerializeCollection(name, value, JsonToProxyUInt32<TVal>, ProxyUInt32ToJson);
 			}
 			public void ProxyUInt32<TVal>(string name, IDictionary<string, TVal> value) where TVal : ISerialProxy<uint>, new() {
