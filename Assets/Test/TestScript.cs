@@ -91,10 +91,15 @@ public class TestScript : MonoBehaviour {
 	private void Awake() {
 
 		Serializer serializer = new Serializer();
-		TestObj obj = serializer.ReadObject<TestObj>(m_jsonFile.text);
-		string result = serializer.WriteObject(obj,true);
-		serializer.ReadObject<TestObj>(result);
-		Debug.Log(result);
+		if (serializer.IsValid(m_jsonFile.text)) {
+			TestObj obj = serializer.ReadObject<TestObj>(m_jsonFile.text);
+			string result = serializer.WriteObject(obj, true);
+			serializer.ReadObject<TestObj>(result);
+			Debug.Log(result);
+		} else {
+			Debug.Log("invalid json");
+		}
+		
 	}
 
 }

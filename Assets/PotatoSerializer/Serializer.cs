@@ -30,6 +30,9 @@ namespace PotatoSerializer {
 		public bool IsObject(string json) {
 			return m_io.IsObject(json);
 		}
+		public bool IsValid(string json) {
+			return m_io.IsValid(json);
+		}
 
 	}
 

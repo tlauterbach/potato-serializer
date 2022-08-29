@@ -114,6 +114,17 @@ namespace PotatoSerializer {
 				JsonNode node = m_parser.Parse(m_lexer.Tokenize(json, m_tabSize));
 				return node.IsType(JsonType.Object);
 			}
+			public bool IsValid(string json) {
+				if (string.IsNullOrEmpty(json)) {
+					return false;
+				}
+				try {
+					JsonNode node = m_parser.Parse(m_lexer.Tokenize(json, m_tabSize));
+					return true;
+				} catch {
+					return false;
+				}
+			}
 
 			private void DoSerialize<T>(string name, ref T value, JsonToValue<T> read, ValueToJson<T> write) {
 				if (IsReading) {
@@ -138,10 +149,10 @@ namespace PotatoSerializer {
 								value.Add(read(item));
 							}
 						} else {
-							throw new Exception(string.Format("Value `{0}' is not an array", name));
+							//throw new Exception(string.Format("Value `{0}' is not an array", name));
 						}
 					} else {
-						throw new KeyNotFoundException(string.Format("No value named `{0}' exists to read", name));
+						//throw new KeyNotFoundException(string.Format("No value named `{0}' exists to read", name));
 					}
 				} else {
 					JsonNode array = new JsonNode(JsonType.Array);
@@ -169,10 +180,10 @@ namespace PotatoSerializer {
 								value.Add(child, read(node[child]));
 							}
 						} else {
-							throw new Exception(string.Format("Value `{0}' is not an object", name));
+							//throw new Exception(string.Format("Value `{0}' is not an object", name));
 						}
 					} else {
-						throw new KeyNotFoundException(string.Format("No value named `{0}' exists to read", name));
+						//throw new KeyNotFoundException(string.Format("No value named `{0}' exists to read", name));
 					}
 				} else {
 					JsonNode obj = new JsonNode(JsonType.Object);
