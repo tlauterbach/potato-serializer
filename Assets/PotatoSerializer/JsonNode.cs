@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace PotatoSerializer {
 
-	internal sealed class JsonNode {
+	public sealed class JsonNode {
 
 		#region Exceptions
 
