@@ -3,7 +3,7 @@ A JSON Serializer/Deserializer for Unity/C#
 
 | Package Name | Package Version | Unity Version |
 |-----|-----|-----|
-| com.potatointeractive.serializer | 1.3.0 | 2019.4.x |
+| com.potatointeractive.serializer | 1.3.1 | 2019.4.x |
 
 [Changelog](CHANGELOG.md)
 

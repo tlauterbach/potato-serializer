@@ -118,12 +118,6 @@ namespace PotatoSerializer {
 					return node;
 				} else {
 					return new JsonNode(JsonType.Null);
-					/*
-					throw new KeyNotFoundException(string.Format(
-						"No value with name `{0}' exists " +
-						"in JsonNode", name
-					));
-					*/
 				}
 			} else {
 				throw new InvalidTypeException(nameof(Get), JsonType.Object);

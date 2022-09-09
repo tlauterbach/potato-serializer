@@ -73,7 +73,7 @@ namespace PotatoSerializer {
 				m_stack.Clear();
 				return result;
 			}
-			public JsonNode ReadNode(string json) {
+			public JsonNode Read(string json) {
 				IsWriting = false;
 				IsReading = true;
 				JsonNode node = m_parser.Parse(m_lexer.Tokenize(json, m_tabSize));
@@ -114,11 +114,11 @@ namespace PotatoSerializer {
 				return array;
 			}
 			public bool IsArray(string json) {
-				JsonNode node = ReadNode(json);
+				JsonNode node = Read(json);
 				return node.IsType(JsonType.Array);
 			}
 			public bool IsObject(string json) {
-				JsonNode node = ReadNode(json);
+				JsonNode node = Read(json);
 				return node.IsType(JsonType.Object);
 			}
 			public bool IsValid(string json) {

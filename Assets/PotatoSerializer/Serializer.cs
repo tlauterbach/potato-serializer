@@ -11,6 +11,9 @@ namespace PotatoSerializer {
 			m_io = new SerialIO(tabSize);
 		}
 
+		public JsonNode Read(string json) {
+			return m_io.Read(json);
+		}
 		public T ReadObject<T>(string json) where T : ISerialObject, new() {
 			return m_io.ReadObject<T>(json);
 		}
