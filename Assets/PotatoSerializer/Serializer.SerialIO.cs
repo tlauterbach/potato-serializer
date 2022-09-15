@@ -237,7 +237,7 @@ namespace PotatoSerializer {
 			#region Converters
 
 			private T JsonToSerialObject<T>(JsonNode node) where T : ISerialObject, new() {
-				if (node.IsNull()) {
+				if (node.IsNull) {
 					return default;
 				} else {
 					m_stack.Push(node);
@@ -259,7 +259,7 @@ namespace PotatoSerializer {
 				}
 			}
 			private static T JsonToEnum<T>(JsonNode node) where T : struct, Enum {
-				if (node.IsNull()) {
+				if (node.IsNull) {
 					return default;
 				} else {
 					if (System.Enum.TryParse(node.AsString(), out T value)) {
@@ -277,7 +277,7 @@ namespace PotatoSerializer {
 			}
 
 			private static string JsonToString(JsonNode node) {
-				if (node.IsNull()) {
+				if (node.IsNull) {
 					return default;
 				} else {
 					return node.AsString();
@@ -288,7 +288,7 @@ namespace PotatoSerializer {
 			}
 
 			private static double JsonToDouble(JsonNode node) {
-				if (node.IsNull()) {
+				if (node.IsNull) {
 					return default;
 				} else {
 					return node.AsDouble();
@@ -299,7 +299,7 @@ namespace PotatoSerializer {
 			}
 
 			private static float JsonToFloat(JsonNode node) {
-				if (node.IsNull()) {
+				if (node.IsNull) {
 					return default;
 				} else {
 					return node.AsSingle();
@@ -310,7 +310,7 @@ namespace PotatoSerializer {
 			}
 
 			private static bool JsonToBool(JsonNode node) {
-				if (node.IsNull()) {
+				if (node.IsNull) {
 					return default;
 				} else {
 					return node.AsBool();
@@ -320,7 +320,7 @@ namespace PotatoSerializer {
 				return new JsonNode(value);
 			}
 			private static int JsonToInt32(JsonNode node) {
-				if (node.IsNull()) {
+				if (node.IsNull) {
 					return default;
 				} else {
 					return node.AsInt32();
@@ -330,7 +330,7 @@ namespace PotatoSerializer {
 				return new JsonNode(value);
 			}
 			private static short JsonToInt16(JsonNode node) {
-				if (node.IsNull()) {
+				if (node.IsNull) {
 					return default;
 				} else {
 					return node.AsInt16();
@@ -340,7 +340,7 @@ namespace PotatoSerializer {
 				return new JsonNode(value);
 			}
 			private static long JsonToInt64(JsonNode node) {
-				if (node.IsNull()) {
+				if (node.IsNull) {
 					return default;
 				} else {
 					return node.AsInt64();
@@ -351,7 +351,7 @@ namespace PotatoSerializer {
 			}
 
 			private static uint JsonToUInt32(JsonNode node) {
-				if (node.IsNull()) {
+				if (node.IsNull) {
 					return default;
 				} else {
 					return node.AsUInt32();
@@ -361,7 +361,7 @@ namespace PotatoSerializer {
 				return new JsonNode(value);
 			}
 			private static ushort JsonToUInt16(JsonNode node) {
-				if (node.IsNull()) {
+				if (node.IsNull) {
 					return default;
 				} else {
 					return node.AsUInt16();
@@ -371,7 +371,7 @@ namespace PotatoSerializer {
 				return new JsonNode(value);
 			}
 			private static ulong JsonToUInt64(JsonNode node) {
-				if (node.IsNull()) {
+				if (node.IsNull) {
 					return default;
 				} else {
 					return node.AsUInt64();
@@ -381,7 +381,7 @@ namespace PotatoSerializer {
 				return new JsonNode(value);
 			}
 			private static byte JsonToByte(JsonNode node) {
-				if (node.IsNull()) {
+				if (node.IsNull) {
 					return default;
 				} else {
 					return node.AsByte();
@@ -391,7 +391,7 @@ namespace PotatoSerializer {
 				return new JsonNode(value);
 			}
 			private static sbyte JsonToSByte(JsonNode node) {
-				if (node.IsNull()) {
+				if (node.IsNull) {
 					return default;
 				} else {
 					return node.AsSByte();
@@ -402,7 +402,7 @@ namespace PotatoSerializer {
 			}
 
 			private static Vector2 JsonToVector2(JsonNode node) {
-				if (node.IsNull()) {
+				if (node.IsNull) {
 					return default;
 				} else {
 					return new Vector2(node["x"].AsSingle(), node["y"].AsSingle());
@@ -416,7 +416,7 @@ namespace PotatoSerializer {
 			}
 
 			private static Vector3 JsonToVector3(JsonNode node) {
-				if (node.IsNull()) {
+				if (node.IsNull) {
 					return default;
 				} else {
 					return new Vector3(node["x"].AsSingle(), node["y"].AsSingle(), node["z"].AsSingle());
@@ -431,7 +431,7 @@ namespace PotatoSerializer {
 			}
 
 			private static Vector2Int JsonToVector2Int(JsonNode node) {
-				if (node.IsNull()) {
+				if (node.IsNull) {
 					return default;
 				} else {
 					return new Vector2Int(node["x"].AsInt32(), node["y"].AsInt32());
@@ -445,7 +445,7 @@ namespace PotatoSerializer {
 			}
 
 			private static Vector3Int JsonToVector3Int(JsonNode node) {
-				if (node.IsNull()) {
+				if (node.IsNull) {
 					return default;
 				} else {
 					return new Vector3Int(node["x"].AsInt32(), node["y"].AsInt32(), node["z"].AsInt32());
@@ -460,7 +460,7 @@ namespace PotatoSerializer {
 			}
 
 			private static Quaternion JsonToQuaternion(JsonNode node) {
-				if (node.IsNull()) {
+				if (node.IsNull) {
 					return default;
 				} else {
 					return new Quaternion(node["x"].AsSingle(), node["y"].AsSingle(), node["z"].AsSingle(), node["w"].AsSingle());
@@ -476,7 +476,7 @@ namespace PotatoSerializer {
 			}
 
 			private static Color JsonToColor(JsonNode node) {
-				if (node.IsNull()) {
+				if (node.IsNull) {
 					return default;
 				} else {
 					return new Color(node["r"].AsSingle(), node["g"].AsSingle(), node["b"].AsSingle(), node["a"].AsSingle());
@@ -492,7 +492,7 @@ namespace PotatoSerializer {
 			}
 
 			private static Rect JsonToRect(JsonNode node) {
-				if (node.IsNull()) {
+				if (node.IsNull) {
 					return default;
 				} else {
 					return new Rect(node["x"].AsSingle(), node["y"].AsSingle(), node["width"].AsSingle(), node["height"].AsSingle());
@@ -508,7 +508,7 @@ namespace PotatoSerializer {
 				return node;
 			}
 			private static RectInt JsonToRectInt(JsonNode node) {
-				if (node.IsNull()) {
+				if (node.IsNull) {
 					return default;
 				} else {
 					return new RectInt(node["x"].AsInt32(), node["y"].AsInt32(), node["width"].AsInt32(), node["height"].AsInt32());
@@ -526,7 +526,7 @@ namespace PotatoSerializer {
 
 
 			private static TVal JsonToProxyString<TVal>(JsonNode node) where TVal : ISerialProxy<string>, new() {
-				if (node.IsNull()) {
+				if (node.IsNull) {
 					return default;
 				} else {
 					TVal proxy = new TVal();
@@ -539,7 +539,7 @@ namespace PotatoSerializer {
 			}
 
 			private static TVal JsonToProxyDouble<TVal>(JsonNode node) where TVal : ISerialProxy<double>, new() {
-				if (node.IsNull()) {
+				if (node.IsNull) {
 					return default;
 				} else {
 					TVal proxy = new TVal();
@@ -552,7 +552,7 @@ namespace PotatoSerializer {
 			}
 
 			private static TVal JsonToProxySingle<TVal>(JsonNode node) where TVal : ISerialProxy<float>, new() {
-				if (node.IsNull()) {
+				if (node.IsNull) {
 					return default;
 				} else {
 					TVal proxy = new TVal();
@@ -565,7 +565,7 @@ namespace PotatoSerializer {
 			}
 
 			private static TVal JsonToProxyBool<TVal>(JsonNode node) where TVal : ISerialProxy<bool>, new() {
-				if (node.IsNull()) {
+				if (node.IsNull) {
 					return default;
 				} else {
 					TVal proxy = new TVal();
@@ -578,7 +578,7 @@ namespace PotatoSerializer {
 			}
 
 			private static TVal JsonToProxyInt32<TVal>(JsonNode node) where TVal : ISerialProxy<int>, new() {
-				if (node.IsNull()) {
+				if (node.IsNull) {
 					return default;
 				} else {
 					TVal proxy = new TVal();
@@ -591,7 +591,7 @@ namespace PotatoSerializer {
 			}
 
 			private static TVal JsonToProxyInt16<TVal>(JsonNode node) where TVal : ISerialProxy<short>, new() {
-				if (node.IsNull()) {
+				if (node.IsNull) {
 					return default;
 				} else {
 					TVal proxy = new TVal();
@@ -604,7 +604,7 @@ namespace PotatoSerializer {
 			}
 
 			private static TVal JsonToProxyInt64<TVal>(JsonNode node) where TVal : ISerialProxy<long>, new() {
-				if (node.IsNull()) {
+				if (node.IsNull) {
 					return default;
 				} else {
 					TVal proxy = new TVal();
@@ -617,7 +617,7 @@ namespace PotatoSerializer {
 			}
 
 			private static TVal JsonToProxyUInt32<TVal>(JsonNode node) where TVal : ISerialProxy<uint>, new() {
-				if (node.IsNull()) {
+				if (node.IsNull) {
 					return default;
 				} else {
 					TVal proxy = new TVal();
@@ -630,7 +630,7 @@ namespace PotatoSerializer {
 			}
 
 			private static TVal JsonToProxyUInt16<TVal>(JsonNode node) where TVal : ISerialProxy<ushort>, new() {
-				if (node.IsNull()) {
+				if (node.IsNull) {
 					return default;
 				} else {
 					TVal proxy = new TVal();
@@ -643,7 +643,7 @@ namespace PotatoSerializer {
 			}
 
 			private static TVal JsonToProxyUInt64<TVal>(JsonNode node) where TVal : ISerialProxy<ulong>, new() {
-				if (node.IsNull()) {
+				if (node.IsNull) {
 					return default;
 				} else {
 					TVal proxy = new TVal();
@@ -656,7 +656,7 @@ namespace PotatoSerializer {
 			}
 
 			private static TVal JsonToProxyByte<TVal>(JsonNode node) where TVal : ISerialProxy<byte>, new() {
-				if (node.IsNull()) {
+				if (node.IsNull) {
 					return default;
 				} else {
 					TVal proxy = new TVal();
@@ -669,7 +669,7 @@ namespace PotatoSerializer {
 			}
 
 			private static TVal JsonToProxySByte<TVal>(JsonNode node) where TVal : ISerialProxy<sbyte>, new() {
-				if (node.IsNull()) {
+				if (node.IsNull) {
 					return default;
 				} else {
 					TVal proxy = new TVal();

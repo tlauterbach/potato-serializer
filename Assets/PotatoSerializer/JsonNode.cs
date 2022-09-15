@@ -22,6 +22,29 @@ namespace PotatoSerializer {
 
 		#endregion
 
+		#region Type Helpers
+
+		public bool IsString {
+			get { return IsType(JsonType.String); }
+		}
+		public bool IsNumber {
+			get { return IsType(JsonType.Number); }
+		}
+		public bool IsObject {
+			get { return IsType(JsonType.Object); }
+		}
+		public bool IsArray {
+			get { return IsType(JsonType.Array); }
+		}
+		public bool IsNull {
+			get { return IsType(JsonType.Null); }
+		}
+		public bool IsBoolean {
+			get { return IsType(JsonType.Bool); }
+		}
+
+		#endregion
+
 		public JsonNode this[string name] {
 			get { return Get(name); }
 		}
@@ -162,12 +185,16 @@ namespace PotatoSerializer {
 				throw new InvalidTypeException(nameof(Contains), JsonType.Object);
 			}
 		}
+		public bool Contains(string name, JsonType type) {
+			if (IsType(JsonType.Object)) {
+				return m_object.ContainsKey(name) && m_object[name].IsType(type);
+			} else {
+				throw new InvalidTypeException(nameof(Contains), JsonType.Object);
+			}
+		}
 
 		public bool IsType(JsonType type) {
 			return Type == type;
-		}
-		public bool IsNull() {
-			return Type == JsonType.Null;
 		}
 
 		#region Conversions

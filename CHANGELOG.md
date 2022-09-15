@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.0] 2022-09-15
+### Added
+- helpers to directly ask type of `JsonNode` without using `IsType`
+- changed `IsNull` to property instead of using function
+- `Contains` overload that allows to confirm the type of the contained property
+
 ## [1.3.1] 2022-09-09
 ### Fixed
 - issue where `ReadToNode` was missing from `Serializer`
